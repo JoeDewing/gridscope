@@ -1,0 +1,31 @@
+name: gridscope
+
+profile: gridscope
+
+seed-paths: ["seeds"]
+model-paths: ["models"]
+macro-paths: ["macros"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  gridscope:
+    +schema: raw
+
+models:
+  gridscope:
+    +static_analysis: strict
+
+    staging:
+      +materialized: view
+
+    intermediate:
+      +materialized: view
+
+    marts:
+      core:
+        +materialized: table
+      reporting:
+        +materialized: table
